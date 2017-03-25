@@ -1,0 +1,15 @@
+declared-services:
+  chat-o-bot:
+    label: conversation
+    plan: free
+  cloudantNoSQLDB-service:
+    label: cloudantNoSQLDB
+    plan: Lite
+applications:
+- services:
+   - chat-o-bot
+   - cloudantNoSQLDB-service
+  name: chat-o-bot
+  command: npm start
+  path: .
+  memory: 512M
