@@ -32,21 +32,21 @@ require('cf-deployment-tracker-client').track();
 // configure express
 app.use(helmet());
 app.use('/api/', rateLimit({
-  windowMs: 60 * 1000, // seconds
-  delayMs: 0,
-  max: 15
+	windowMs: 60 * 1000, // seconds
+	delayMs: 0,
+	max: 15
 }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
 // Helper Function to check for enviornment variables
-var checkAndRequire = function(envItem, toRequire, debugMessage) {
-  if (envItem && envItem.match(/true/i)) {
-    if (debugMessage) {
-        debug(debugMessage);
-    }
-    require(toRequire)(app,controller);
-  }
+var checkAndRequire = function (envItem, toRequire, debugMessage) {
+	if (envItem && envItem.match(/true/i)) {
+		if (debugMessage) {
+			debug(debugMessage);
+		}
+		require(toRequire)(app, controller);
+	}
 };
 
 // configure the channels
@@ -57,7 +57,7 @@ var controller = require('./lib/controller');
 checkAndRequire(process.env.USE_WEBUI, './lib/bot/web-ui', 'Initializing WebUI');
 
 http.listen(port, function () {
-  debug('Server listening on port: ' + port);
+	debug('Server listening on port: ' + port);
 });
 
 module.exports = http
